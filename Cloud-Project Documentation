@@ -5,6 +5,8 @@ _____    __      __   _________ ____________________  ________   .___           
  /    |    \ \        /  /        \  |        \\     \____/       \  |   ||   |  \ \___ \  |  |   / __ \_|   |  \\  \___ \  ___/ 
  \____|__  /  \__/\  /  /_______  / /_______  / \______  /\_______ \ |___||___|  //____  > |__|  (____  /|___|  / \___  > \___  >
          \/        \/           \/          \/         \/         \/           \/      \/             \/      \/      \/      \/ 
-
-
 ```
+
+## Launching EC2 Instance ##
+If you don't already have an AWS account, please create one. Note that this may take some time.
+Log in to AWS management console
