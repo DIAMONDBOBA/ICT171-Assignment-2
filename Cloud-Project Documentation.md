@@ -1,11 +1,7 @@
-```
-_____    __      __   _________ ____________________  ________   .___                   __                                   
-   /  _  \  /  \    /  \ /   _____/ \_   _____/\_   ___ \ \_____  \  |   |  ____    _______/  |_ _____     ____    ____    ____  
-  /  /_\  \ \   \/\/   / \_____  \   |    __)_ /    \  \/  /  ____/  |   | /    \  /  ___/\   __\\__  \   /    \ _/ ___\ _/ __ \ 
- /    |    \ \        /  /        \  |        \\     \____/       \  |   ||   |  \ \___ \  |  |   / __ \_|   |  \\  \___ \  ___/ 
- \____|__  /  \__/\  /  /_______  / /_______  / \______  /\_______ \ |___||___|  //____  > |__|  (____  /|___|  / \___  > \___  >
-         \/        \/           \/          \/         \/         \/           \/      \/             \/      \/      \/      \/ 
-```
+
+# Le Gout - Cloud Food Blog & Cultural Journal
+A Step-by-step guide to deploying the ** Le Gout** food blog on AWS using an EC2 instance , Apache, Route 53 DNS, and SSL via Certbot.
+
 
 ## Launching EC2 Instance ##
 If you don't already have an AWS account, please create one. This may take some time.
