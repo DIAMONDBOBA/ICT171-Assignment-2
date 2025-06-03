@@ -50,6 +50,8 @@ This is essential for securely connecting to the instance.
 Download Key Pair: immediately and store it in a secure, private location.
 There will be no access to via SSH without it,server will be unaccessable.
 <img width="933" alt="image" src="https://github.com/user-attachments/assets/8e56b262-b1a6-4442-9392-afaa9f314696" />
+after reviewing all seetings click on Launch instances
+<img width="587" alt="image" src="https://github.com/user-attachments/assets/ebd419e8-3d3e-4158-b16c-15e9586c6ee9" />
 
 
 ## Allocate and associate elastic IP 
