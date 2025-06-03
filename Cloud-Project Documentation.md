@@ -1,4 +1,4 @@
-
+ 
 # Le Gout - Cloud Food Blog & Cultural Journal
 A Step-by-step guide to deploying the ** Le Gout** food blog on AWS using an EC2 instance, Apache, Route 53 DNS, and SSL via Certbot.
 
@@ -58,6 +58,13 @@ after reviewing all seetings click on Launch instances
 To  easly access the server even after a restart:
 Go to **EC2 Dashboard > Network & Security > Elastic IPs**
 Click **Allocate Elastic IP**, then **Associate** it with the instance.
+<img width="956" alt="image" src="https://github.com/user-attachments/assets/4b325639-69bb-4e45-a9a3-4e66cbcdf619" />
+
+<img width="944" alt="image" src="https://github.com/user-attachments/assets/ec084f24-7916-4a84-b541-45c5761c92cf" />
+
+<img width="959" alt="image" src="https://github.com/user-attachments/assets/b19f12fd-a00e-4f88-a596-cea660e03ccb" />
+
+
 
 ## Connect to server & Configure
 ### SSH into the EC2 Instance
@@ -76,10 +83,16 @@ sudo apt upgrade -y
 ```
 sudo apt install apache2 -y
 ```
-Test Apache: Open a web browser and navigate to legout ip address and be able to should see the Apache default page.
+Test Apache: Open a web browser and navigate to EC2 instance's public IPV4 address,this will take you to the default Apache page.this confirms that apacge is running and the security group is correctly allowing http traffic. connect to the EC2 instance using SSH with the previously created key pair.
+
+
+<img width="949" alt="image" src="https://github.com/user-attachments/assets/9301e232-66e6-4e0b-8080-9f787d6682d7" />
 
 
 ## Edit index.html on the Webserver ##
+
+cd /var/www/html/
+ls -l
 sudo nano /var/www/html/index.html
 paste cstome HTML code
 
