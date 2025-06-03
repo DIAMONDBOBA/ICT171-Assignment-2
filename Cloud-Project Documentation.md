@@ -21,6 +21,8 @@ To create LeGout, select the Ubuntu Server and ensure it's free tier eligible to
 
 **Choose an Instance Type:**
 Select the t2.micro instance type
+<img width="944" alt="image" src="https://github.com/user-attachments/assets/e1351277-2cc1-4313-8fa8-d8d9c15ece8a" />
+
 
 **Configure Instance:**
 Since this is a simple food vlog, some default settings are fine 
@@ -31,11 +33,16 @@ Since this is a simple food vlog, some default settings are fine
 Name: Le Gout food vlog  to easily identify the instance.
 
 ### Configure Security Group:##
+
 This is very crucical.creat a new security group
 Add Rules SSH (Port 22): Allows a secure connection to the instance via the command line.
 HTTP (Port 80): Allows web traffic (unencrypted).
 HTTPS (Port 443): Allows secure web traffic (encrypted): Allow SSH Access).
 give the security group a descriptive name (e.g., legoutSG) 
+
+<img width="946" alt="image" src="https://github.com/user-attachments/assets/f3406415-007c-4712-ba6b-ffc15aed91e1" />
+
+<img width="933" alt="image" src="https://github.com/user-attachments/assets/1bfb0b28-0c73-4013-9068-55c12f2ba86b" />
 
 
 **Key Pair:** Create a New Key Pair
