@@ -14,10 +14,10 @@ Navigate to the EC2 Dashboard and in the search bar at the top, type "EC2" and s
 results.
 
 ### Launch Instance
--**Choose an Amazon Machine Image(AMI:**
+**Choose an Amazon Machine Image(AMI:**
 To create LeGout, select the Ubuntu Server and ensure it's free tier eligible to save costs.
 
--**Choose an Instance Type:**
+**Choose an Instance Type:**
 Select the t2.micro instance type
 -**Configure Instance:**
 Since this is a simple food vlog, some default settings are fine 
@@ -29,16 +29,18 @@ Since this is a simple food vlog, some default settings are fine
 Name: Le Gout food vlog  to easily identify the instance.
 
 ### Configure Security Group:##
+This is very crucical.creat a new security group
+Add Rules SSH (Port 22): Allows a secure connection to the instance via the command line.
+HTTP (Port 80): Allows web traffic (unencrypted).
+HTTPS (Port 443): Allows secure web traffic (encrypted): Allow SSH Access").
+
+
 
 _**Key Pair:** Create a New Key Pair
 a prompt to create a new key pair (a .pem file). should show up
 This is essential for securely connecting to the instance.
 Download Key Pair: immediately and store it in a secure, private location. It cannot be downloaded again. if lost, you'll be locked out of the instance.
 
-### Configure Security Group:##
-Add Rules SSH (Port 22): Allows a secure connection to the instance via the command line.
-HTTP (Port 80): Allows web traffic (unencrypted).
-HTTPS (Port 443): Allows secure web traffic (encrypted): Allow SSH Access").
 
 ## Allocate and associate elastic IP 
 To keep easly access the server even after a restart:
