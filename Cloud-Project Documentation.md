@@ -14,6 +14,8 @@ Navigate to the EC2 Dashboard and in the search bar at the top, type "EC2" and s
 results.
 
 ### Launch Instance
+<img width="951" alt="image" src="https://github.com/user-attachments/assets/ffe03705-bcfd-420c-9593-fb4914316c39" />
+
 **Choose an Amazon Machine Image(AMI:**
 To create LeGout, select the Ubuntu Server and ensure it's free tier eligible to save costs.
 
@@ -50,7 +52,7 @@ Click **Allocate Elastic IP**, then **Associate** it with the instance.
 ## Connect to server & Configure
 ### SSH into the EC2 Instance
 ssh -i "your-key.pem" ubuntu@<EC2-Public-IP>
-confirm connection
+confirm connection to the server 
 
 ## Update Instance##
 Once connected,  update the server:
