@@ -1,32 +1,35 @@
 
 # Le Gout - Cloud Food Blog & Cultural Journal
-A Step-by-step guide to deploying the ** Le Gout** food blog on AWS using an EC2 instance , Apache, Route 53 DNS, and SSL via Certbot.
+A Step-by-step guide to deploying the ** Le Gout** food blog on AWS using an EC2 instance, Apache, Route 53 DNS, and SSL via Certbot.
 
 >**Author:** Sarah Katuku
+
 >**Student ID:** 35396921
 
 ## Launching EC2 Instance ##
-If you don't already have an AWS account, please create one. as this may take sometime.
+If you don't already have an AWS account, please create one. Keeping in mind that this may take some time.
 ## Log in to the Amazon EC2 Management Console ##
-Log in to the AWS management console: https://aws.amazon.com/ec2/
+>Log in to the AWS management console: https://aws.amazon.com/ec2/
 Navigate to the EC2 Dashboard and in the search bar at the top, type "EC2" and select it from the
 results.
 
 ### Launch Instance
 -**Choose an Amazon Machine Image(AMI:**
-
+To create LeGout, select the Ubuntu Server, and make sure it's free tier eligible to save costs.
+-**Choose an Instance Type:**
+Select the t2.micro instance type
 -**Instance Type:** t2.micro
 -** Storage:** 8 GiB
 -**Name Tag:** Le Gout
 _**Key Pair:** Create a New Key Pair
-a prompte to create a new key pair (a .pem file). should show up
+a prompt to create a new key pair (a .pem file). should show up
 This is essential for securely connecting to the instance.
-Download Key Pair: immediately and store it in a secure, private location. it cannot download it again. if lost, you'll be locked out of the instance.
+Download Key Pair: immediately and store it in a secure, private location. It cannot be downloaded again. if lost, you'll be locked out of the instance.
 
 ### Configure Security Group:##
 Add Rules SSH (Port 22): Allows a secure connection to the instance via the command line.
 HTTP (Port 80): Allows web traffic (unencrypted).
-HTTPS (Port 443): Allows secure web traffic (encrypted):Allow SSH Access").
+HTTPS (Port 443): Allows secure web traffic (encrypted): Allow SSH Access").
 
 ## Allocate and associate elastic IP 
 To keep easly access the server even after a restart:
