@@ -36,28 +36,27 @@ HTTPS (Port 443): Allows secure web traffic (encrypted): Allow SSH Access).
 give the security group a descriptive name (e.g., legoutSG) 
 
 
-_**Key Pair:** Create a New Key Pair
+**Key Pair:** Create a New Key Pair
 a prompt to create a new key pair (a .pem file). should show up
 This is essential for securely connecting to the instance.
 Download Key Pair: immediately and store it in a secure, private location.
 There will be no access to via SSH without it,server will be unaccessable.
 
-
 ## Allocate and associate elastic IP 
-To keep easly access the server even after a restart:
+To  easly access the server even after a restart:
 Go to **EC2 Dashboard > Network & Security > Elastic IPs**
 Click **Allocate Elastic IP**, then **Associate** it with the instance.
 
-
 ## Connect to server & Configure
 ### SSH into the EC2 Instance
-
-```
-bash
 ssh -i "your-key.pem" ubuntu@<EC2-Public-IP>
+confirm connection
 
-## Update Instance
+## Update Instance##
 Once connected,  update the server:
+
+bash
+```
 sudo apt update
 sudo apt upgrade -y
 ```
