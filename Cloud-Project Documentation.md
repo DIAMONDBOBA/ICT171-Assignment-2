@@ -78,7 +78,7 @@ on the local machine, navagate to the directory where the keypair.pem file is sa
 ### SSH into the EC2 Instance
 connect to the EC2 instance using SSH
 
-Bash
+
 ```
 ssh -i "your-key.pem" ubuntu@<EC2-Public-IP>
 confirm connection to the server 
@@ -86,7 +86,7 @@ confirm connection to the server
 Confirm the connection by verifying the terminal prompt change to the servers' hostname.
 ## Update Instance##
 Once connected,  update the server this will address any potential security vulnerabilities and ensures access to the newest features and bug fixes.
-bash
+
 ```
 sudo apt update
 sudo apt upgrade -y
@@ -95,6 +95,7 @@ sudo apt upgrade -y
 ```
 sudo apt install apache2 -y
 ```
+
 Test Apache: Open a web browser and navigate to EC2 instance's public IPV4 address,this will take you to the default Apache page.this confirms that apacge is running and the security group is correctly allowing http traffic. connect to the EC2 instance using SSH with the previously created key pair.
 
 
@@ -112,7 +113,7 @@ cd /var/www/html/
 ls -l
 sudo mv index.html index.html.bak
 paste cstome HTML code in the files
-
+```
 ## Register a Domain Name:##
 Create a Hosted Zone
 In the AWS console, search for and navigate to "Route 53"
@@ -121,7 +122,7 @@ click create hosted zone button.
 Enter domain name (Legout.click).in the domain field.
 select public hosted zone for the type. click create hosted zone.
 
-##Create DNS Records in Route 53 ##
+##Create DNS Records in Route 53:##
 In Route 53 hosted zone, click "Create record."
 Record type: A (IPv4)
 Value: Enter  EC2 instance's Public IP address.
@@ -134,12 +135,14 @@ Implementing HTTPS is very crucial for website security and user trust.
 an SSL certificate is Essential to  enable HTTPS (secure connection).
 
 Install Certbot 
+
 ```
 sudo apt update
 sudo apt install certbot python3-certbot-apache -y
 sudo certbot --apache
+
 ```
-#Follow the prompts#
+##Follow the prompts##
 Enter email address: Enter a vaild email for urgent renewal notices and security warnings.
 Terms of service: Agree to the let's Encrypt terms of service.
 Enter your domain name (e.g.,legout.click).
@@ -151,10 +154,11 @@ to simplify any future updates
 
 scp -i your-key.pem * ubuntu@<EC2-IP>:/var/www/html/
 Enable Firewall
+```
 sudo ufw allow 'Apache Full'
 sudo ufw enable
 sudo apt update && sudo apt upgrade -y
-
+```
 
 
 
