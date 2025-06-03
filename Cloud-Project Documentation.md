@@ -6,14 +6,15 @@ A Step-by-step guide to deploying the ** Le Gout** food blog on AWS using an EC2
 >**Student ID:** 35396921
 
 ## Launching EC2 Instance ##
-If you don't already have an AWS account, please create one. This may take some time.
+If you don't already have an AWS account, please create one. as this may take sometime.
 ## Log in to the Amazon EC2 Management Console ##
 Log in to the AWS management console: https://aws.amazon.com/ec2/
 Navigate to the EC2 Dashboard and in the search bar at the top, type "EC2" and select it from the
 results.
 
 ### Launch Instance
--**AMI:** Ubuntu Server (Free Tier Eligible)
+-**Choose an Amazon Machine Image(AMI:**
+
 -**Instance Type:** t2.micro
 -** Storage:** 8 GiB
 -**Name Tag:** Le Gout
