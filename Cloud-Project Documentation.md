@@ -11,7 +11,7 @@ If you don't already have an AWS account, please create one. Keeping in mind tha
 ## Log in to the Amazon EC2 Management Console ##
 >Log in to the AWS management console: https://aws.amazon.com/ec2/
 Navigate to the EC2 Dashboard and in the search bar at the top, type "EC2" and select it from the
-results.
+results.from the EC2 Dashboard, click on the launch instance button to create the instance.
 
 ### Launch Instance
 <img width="951" alt="image" src="https://github.com/user-attachments/assets/ffe03705-bcfd-420c-9593-fb4914316c39" />
