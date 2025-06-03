@@ -42,7 +42,6 @@ give the security group a descriptive name (e.g., legoutSG)
 
 <img width="946" alt="image" src="https://github.com/user-attachments/assets/f3406415-007c-4712-ba6b-ffc15aed91e1" />
 
-<img width="933" alt="image" src="https://github.com/user-attachments/assets/1bfb0b28-0c73-4013-9068-55c12f2ba86b" />
 
 
 **Key Pair:** Create a New Key Pair
@@ -50,6 +49,8 @@ a prompt to create a new key pair (a .pem file). should show up
 This is essential for securely connecting to the instance.
 Download Key Pair: immediately and store it in a secure, private location.
 There will be no access to via SSH without it,server will be unaccessable.
+<img width="933" alt="image" src="https://github.com/user-attachments/assets/8e56b262-b1a6-4442-9392-afaa9f314696" />
+
 
 ## Allocate and associate elastic IP 
 To  easly access the server even after a restart:
