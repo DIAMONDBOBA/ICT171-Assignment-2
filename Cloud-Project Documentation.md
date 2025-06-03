@@ -16,11 +16,11 @@ results.
 ### Launch Instance
 -**Choose an Amazon Machine Image(AMI:**
 To create LeGout, select the Ubuntu Server, and make sure it's free tier eligible to save costs.
-**Choose an Instance Type:**
+-**Choose an Instance Type:**
 Select the t2.micro instance type
-**Configure Instance:**
+-**Configure Instance:**
 Since this is a simple food vlog, some default settings are fine 
-**Storage:** The default storage is okay, this can always be increased later for content that requires more space, such as high-resolution images. For now, 8 GB is  okay.
+-**Storage:** The default storage is okay, this can always be increased later for content that requires more space, such as high-resolution images. For now, 8 GB is  okay.
 
 -**Name Tag:** add a tag
 Name: Le Gout food vlog  to easily identify the instance.
