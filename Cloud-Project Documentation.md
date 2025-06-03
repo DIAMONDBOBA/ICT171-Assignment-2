@@ -23,24 +23,24 @@ Select the t2.micro instance type
 **Configure Instance:**
 Since this is a simple food vlog, some default settings are fine 
 
--**Storage:** The default storage is okay; this can always be increased later for content that requires more space, such as high-resolution images. For now, 8 GB is  okay.
+**Storage:** The default storage is okay; this can always be increased later for content that requires more space, such as high-resolution images. For now, 8 GB is  okay.
 
-
--**Name Tag:** add a tag
+**Name Tag:** add a tag
 Name: Le Gout food vlog  to easily identify the instance.
 
 ### Configure Security Group:##
 This is very crucical.creat a new security group
 Add Rules SSH (Port 22): Allows a secure connection to the instance via the command line.
 HTTP (Port 80): Allows web traffic (unencrypted).
-HTTPS (Port 443): Allows secure web traffic (encrypted): Allow SSH Access").
-
+HTTPS (Port 443): Allows secure web traffic (encrypted): Allow SSH Access).
+give the security group a descriptive name (e.g., legoutSG) 
 
 
 _**Key Pair:** Create a New Key Pair
 a prompt to create a new key pair (a .pem file). should show up
 This is essential for securely connecting to the instance.
-Download Key Pair: immediately and store it in a secure, private location. It cannot be downloaded again. if lost, you'll be locked out of the instance.
+Download Key Pair: immediately and store it in a secure, private location.
+There will be no access to via SSH without it,server will be unaccessable.
 
 
 ## Allocate and associate elastic IP 
@@ -60,10 +60,11 @@ ssh -i "your-key.pem" ubuntu@<EC2-Public-IP>
 Once connected,  update the server:
 sudo apt update
 sudo apt upgrade -y
-
+```
 ## Install Apache ##
-
+```
 sudo apt install apache2 -y
+```
 Test Apache: Open a web browser and navigate to legout ip address and be able to should see the Apache default page.
 
 
