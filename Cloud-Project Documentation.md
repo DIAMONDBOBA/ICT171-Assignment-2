@@ -1,15 +1,20 @@
  [ IP Address: 52.1.191.87 ]
+ 
  [legout.click]
  
 # Le Gout - Cloud Food Blog & Cultural Journal
-A Step-by-step guide to deploying the ** Le Gout** food blog on AWS using an EC2 instance, Apache, Route 53 DNS, and SSL via Certbot.
+A Step-by-step guide to deploying the ** Le Gout** food blog on Amazon Web Services(AWS)using an EC2 instance, Apache web server, Route 53 for Domain Name System (DNS)managment,and SSL/TLS encryption via Certbot.This documentation aims to be sufficiently detailed to allow an IT colleague or another ICT171 student to replicate the deployment from scratch.
 
 >**Author:** Sarah Katuku
 
 >**Student ID:** 35396921
 
+# Introduction
+This document outlines the entire process of setting up Le Gout, a personal food blog and cultural journal.the goal is to create an online presence that showcases culinary experiences and provides a platforrm for cultural sharing.
+
 ## Launching EC2 Instance ##
 If you don't already have an AWS account, please create one. Keeping in mind that this may take some time.
+
 ## Log in to the Amazon EC2 Management Console ##
 >Log in to the AWS management console: https://aws.amazon.com/ec2/
 Navigate to the EC2 Dashboard and in the search bar at the top, type "EC2" and select it from the
