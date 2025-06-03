@@ -1,4 +1,6 @@
  [ IP Address: 52.1.191.87 ]
+ [legout.click]
+ 
 # Le Gout - Cloud Food Blog & Cultural Journal
 A Step-by-step guide to deploying the ** Le Gout** food blog on AWS using an EC2 instance, Apache, Route 53 DNS, and SSL via Certbot.
 
