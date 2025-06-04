@@ -148,20 +148,27 @@ Terms of service: Agree to the let's Encrypt terms of service.
 Enter your domain name (e.g.,legout.click).
 redirect HTTP to HTTPS (recommended: "2: Redirect").
 Automatic Renewal this will ensure that all vistors use the secure connection.
+open a web brower and navigate to http://legout.click.
+The browser will automatically redirected to https://legout.click
+check for the padlock icon in the browser address bar,indicating a secure,encrypted connection.This confirms that HTTPS is Successfully enabled and working.
 
-## Automated Deployment
-to simplify any future updates
-
+## Firewall ##
+To further enchance the security of Le Gout server beyond AWS security Groups a software firewall(ufw)will provide additional layer of defense.
+connect to EC2 instance via SSH
 scp -i your-key.pem * ubuntu@<EC2-IP>:/var/www/html/
 Enable Firewall
 ```
+sudo ufw allow ssh
 sudo ufw allow 'Apache Full'
 sudo ufw enable
+sudo ufw status
 sudo apt update && sudo apt upgrade -y
 ```
 
+## Automate Content Deployment Script
+To streamline future updates to Le Gout a simple shell scrip was created to automate the transfer of new HTML files.
 
-
+This deploy_legout.sh script automates the secure transfer of the entire "Le Gout" website content to the production server. It leverages scp (Secure Copy Protocol) to copy files from a specified local directory to the Apache web root on the EC2 instance. After transfer, it ensures correct file ownership and permissions for the Apache web server (www-data user) to maintain proper functionality and security.
 
 
 
