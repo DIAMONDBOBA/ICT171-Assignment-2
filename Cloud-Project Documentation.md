@@ -9,17 +9,19 @@ A Step-by-step guide to deploying the ** Le Gout** food blog on Amazon Web Servi
 
 
 # Introduction
-This document outlines the entire process of setting up Le Gout, a personal food blog and cultural journal.the goal is to create an online presence that showcases culinary experiences and provides a platforrm for cultural sharing.
+This document outlines the process of setting up Le Gout, a personal food blog and cultural journal. The goal is to create an online presence that showcases culinary experiences and provides a platform for cultural sharing.
 
 # Launching EC2 Instance #
 If you don't already have an AWS account, please create one. Keeping in mind that this may take some time.
 
-## Log in to the Amazon EC2 Management Console ##
->Log in to the AWS management console: https://aws.amazon.com/ec2/
-Navigate to the EC2 Dashboard and in the search bar at the top, type "EC2" and select it from the
-results.from the EC2 Dashboard, click on the launch instance button to create the instance.
+# Log in to the Amazon EC2 Management Console #
+Log in to the AWS management console: https://aws.amazon.com/ec2/
+Navigate to the EC2 Dashboard by searching for "EC2" and selecting it from the results.
 
 ### Launch Instance
+From the EC2 Dashboard, click on the "Launch instance" button to begin the instance creation wizard.
+
+Figure 1: Initiating a new EC2 instance launch from the EC2 Dashboard
 <img width="951" alt="image" src="https://github.com/user-attachments/assets/ffe03705-bcfd-420c-9593-fb4914316c39" />
 
 **Choose an Amazon Machine Image(AMI:**
