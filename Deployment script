@@ -1,1 +1,115 @@
+#!/bin/bash
 
+# --- Le Gout Website Deployment Script ---
+# This script automates the deployment of a website from a local machine
+# to an AWS EC2 Ubuntu instance. It handles file transfer via SCP and
+# sets correct file ownership and permissions via SSH for web server (Apache) operation.
+#
+# Execution Context: This script is intended to be run from the LOCAL CLIENT MACHINE
+# (e.g., a developer's workstation running Git Bash or WSL).
+
+# --- Configuration Variables ---
+# These variables define paths, user credentials, and connection details.
+# USERS MUST CUSTOMIZE THESE VALUES for their specific environment.
+#
+# Syntax Notes:
+# - Variable assignments must not contain spaces around the '=' operator (e.g., VAR="value").
+# - Paths on Windows, when interpreted by a Bash environment (like Git Bash/WSL),
+#   require forward slashes '/' and drive letters are mapped (e.g., C: becomes /mnt/c/).
+
+LOCAL_SITE_PATH="/mnt/c/Users/nkatu/OneDrive/Desktop/LeGoutWebsite"      # Specifies the absolute path to the local website source directory.
+SSH_KEY_PATH="/home/cd/Awskeypair.pem"                                   # Specifies the absolute path to the EC2 private key file on the local machine.
+EC2_CONNECTION="ubuntu@ec2-52-1-191-87.compute-1.amazonaws.com"          # Defines the SSH connection string (user@hostname/IP) for the EC2 instance.
+
+# --- Remote Server Configuration ---
+# These variables define standard paths on the remote EC2 instance.
+# Typically, these values do not require modification.
+REMOTE_WEB_ROOT="/var/www/html/" # Defines Apache's default web root directory on the EC2 Ubuntu instance.
+
+# Display script start banner
+echo "-------------------------------------------"
+echo "--- Starting Le Gout Website Deployment ---"
+echo "-------------------------------------------"
+
+# Validate LOCAL_SITE_PATH: Checks if the specified local website source directory exists.
+if [ ! -d "$LOCAL_SITE_PATH" ]; then
+    echo "Error: LOCAL_SITE_PATH '$LOCAL_SITE_PATH' does not exist or is not a directory."
+    echo "Action Required: Update the 'LOCAL_SITE_PATH' variable in this script."
+    exit 1 # Exits the script if the local path is invalid.
+fi
+
+# Validate SSH_KEY_PATH: Checks if the specified SSH private key file exists.
+if [ ! -f "$SSH_KEY_PATH" ]; then
+    echo "Error: SSH_KEY_PATH '$SSH_KEY_PATH' does not exist or is not a file."
+    echo "Action Required: Update the 'SSH_KEY_PATH' variable in this script."
+    exit 1 # Exits the script if the key file is not found.
+fi
+
+# Attempt to transfer website files from the local machine to the EC2 instance using SCP.
+echo "Attempting to transfer files from '$LOCAL_SITE_PATH' to EC2 instance..."
+# scp command breakdown:
+# -r: Enables recursive copying, essential for directories (like 'css/' and 'images/').
+# -i "$SSH_KEY_PATH": Specifies the identity file (private key) for SSH authentication.
+# "$LOCAL_SITE_PATH"/*: The source. The '/*' ensures that the *contents* of the local directory
+#                     are copied, not the directory itself, directly into the remote web root.
+# "$EC2_CONNECTION:$REMOTE_WEB_ROOT": The destination. Specifies the remote host and target directory.
+scp -r -i "$SSH_KEY_PATH" "$LOCAL_SITE_PATH"/* "$EC2_CONNECTION:$REMOTE_WEB_ROOT"
+
+# Check the exit status of the previous 'scp' command.
+# A non-zero exit status ($? -ne 0) indicates an error.
+if [ $? -ne 0 ]; then
+    echo "Error: File transfer (scp) failed."
+    echo "Troubleshooting Steps:"
+    echo "  - Verify correctness of SSH_KEY_PATH and EC2_CONNECTION variables."
+    echo "  - Ensure SSH key permissions are strictly set (e.g., 'chmod 400 YOUR_KEY.pem' in Git Bash/WSL)."
+    echo "  - Confirm EC2 instance is running and accessible (check AWS Security Groups for Port 22/SSH)."
+    echo "  - Inspect local and remote network connectivity."
+    exit 1 # Exits script on SCP failure.
+fi
+echo "Files transferred successfully to $REMOTE_WEB_ROOT."
+
+
+# Connect to the EC2 instance via SSH to set file ownership and permissions.
+echo "Connecting to EC2 instance to set file ownership and permissions..."
+# The 'ssh' command executes a block of commands on the remote server.
+# << 'EOF': This 'here document' syntax allows multiple lines of commands to be sent to the remote shell.
+# IMPORTANT: Using << 'EOF' (with quotes) prevents local shell expansion of variables within the block,
+# ensuring commands are executed literally on the remote server.
+ssh -i "$SSH_KEY_PATH" "$EC2_CONNECTION" << 'EOF'
+    # Change ownership of all files and directories in the web root to 'www-data' user and group.
+    # 'sudo' is used as '/var/www/html/' is typically owned by 'root'.
+    # -R: Applies the change recursively to all contents.
+    sudo chown -R www-data:www-data "$REMOTE_WEB_ROOT"
+    echo "Ownership changed to www-data."
+
+    # Set permissions for directories: rwx for owner, rx for group/others (755).
+    # 'find ... -type d': Selects only directories.
+    # '-exec chmod 755 {} \;': Executes 'chmod 755' on each found directory.
+    sudo find "$REMOTE_WEB_ROOT" -type d -exec chmod 755 {} \;
+    echo "Directory permissions set to 755."
+
+    # Set permissions for files: rw for owner, r for group/others (644).
+    # 'find ... -type f': Selects only files.
+    # '-exec chmod 644 {} \;': Executes 'chmod 644' on each found file.
+    sudo find "$REMOTE_WEB_ROOT" -type f -exec chmod 644 {} \;
+    echo "File permissions set to 644."
+
+    echo "File permissions and ownership updated successfully on the EC2 instance."
+EOF
+
+# Check the exit status of the previous 'ssh' command (remote permission setting).
+if [ $? -ne 0 ]; then
+    echo "Error: Setting permissions on EC2 failed via SSH."
+    echo "Troubleshooting Steps:"
+    echo "  - Verify correctness of SSH_KEY_PATH and EC2_CONNECTION variables."
+    echo "  - Confirm SSH key permissions are 400."
+    echo "  - Ensure the 'ubuntu' user on EC2 has 'sudo' privileges (standard for Ubuntu AMIs)."
+    exit 1 # Exits script on SSH command failure.
+fi
+
+# Display script completion banner
+echo "------------------------------------------"
+echo "--- Le Gout Website Deployment Complete! ---"
+echo "------------------------------------------"
+echo "Access the updated site: https://your-domain.click" # Reminder for user to check the website.
+echo "Note: Clearing browser cache may be necessary for immediate display of changes."
