@@ -1,13 +1,12 @@
- [ IP Address: 52.1.191.87 ]
- 
- [legout.click]
  
 # Le Gout - Cloud Food Blog & Cultural Journal
-A Step-by-step guide to deploying the ** Le Gout** food blog on Amazon Web Services(AWS)using an EC2 instance, Apache web server, Route 53 for Domain Name System (DNS)managment,and SSL/TLS encryption via Certbot.This documentation aims to be sufficiently detailed to allow an IT colleague or another ICT171 student to replicate the deployment from scratch.
+A Step-by-step guide to deploying the ** Le Gout** food blog on Amazon Web Services(AWS)using an EC2 instance, Apache web server, Route 53 for Domain Name System (DNS) management, and SSL/TLS encryption via Certbot.This documentation aims to be sufficiently detailed to allow an IT colleague or another ICT171 student to replicate the deployment from scratch.
 
 >**Author:** Sarah Katuku
 
 >**Student ID:** 35396921
+>** Domain:** https://legout.click
+
 
 # Introduction
 This document outlines the entire process of setting up Le Gout, a personal food blog and cultural journal.the goal is to create an online presence that showcases culinary experiences and provides a platforrm for cultural sharing.
@@ -170,6 +169,9 @@ To streamline future updates to Le Gout a simple shell scrip was created to auto
 
 This deploy_legout.sh script automates the secure transfer of the entire "Le Gout" website content to the production server. It leverages scp (Secure Copy Protocol) to copy files from a specified local directory to the Apache web root on the EC2 instance. After transfer, it ensures correct file ownership and permissions for the Apache web server (www-data user) to maintain proper functionality and security.
 
+## References##
+Certbot Apache—https://certbot.eff.org/instructions
+Simplefood-https://simplefood.blog/
 
 
 
