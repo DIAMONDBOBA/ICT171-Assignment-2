@@ -92,65 +92,75 @@ Figure 8: Confirmation of Elastic IP association details
 
 
 ## Connect to server & Configure
-on the local machine, navigate to the directory where the keypair.pem file is saved.
-### SSH into the EC2 Instance
-connect to the EC2 instance using SSH
+Open the terminal on the local machine.
+Set restrictive permissions for the private key file.
 
+This makes the key file readable only by the owner, a critical security requirement for SSH.
+
+On the local machine, navigate to the directory where the keypair.pem file is saved.
+
+```
+chmod 400 /home/cd/Awskeypair.pem
+```
+### SSH into the EC2 Instance
+Connect to the EC2 instance via SSH
+Confirm connection by verifying the terminal prompt changed to the server's hostname.
 
 ```
 ssh -i "your-key.pem" ubuntu@<EC2-Public-IP>
-confirm connection to the server 
 ```
-Confirm the connection by verifying the terminal prompt change to the servers' hostname.
 ## Update Instance##
-Once connected,  update the server this will address any potential security vulnerabilities and ensures access to the newest features and bug fixes.
+Once connected,  update the server. This will address any potential security vulnerabilities and ensure access to the newest features and bug fixes.
 
 ```
 sudo apt update
 sudo apt upgrade -y
 ```
 ## Install Apache ##
+Install the Apache web server package on the Ubuntu server.
 ```
 sudo apt install apache2 -y
 ```
 
-Test Apache: Open a web browser and navigate to EC2 instance's public IPV4 address,this will take you to the default Apache page.this confirms that apacge is running and the security group is correctly allowing http traffic. connect to the EC2 instance using SSH with the previously created key pair.
+Test Apache: Open a web browser and navigate to the EC2 instance's public IPV4 address, which will take you to the default Apache page. This confirms that Apache is running and the security group is correctly allowing HTTP traffic. Connect to the EC2 instance using SSH with the previously created key pair.
 
+
+Figure 9: Default Apache2 welcome page confirming successful web server installation and accessibility.
 
 <img width="949" alt="image" src="https://github.com/user-attachments/assets/9301e232-66e6-4e0b-8080-9f787d6682d7" />
 
 ## Deploy "Le Gout" HTML Content
-once apache is succeffully installed and verified replace the default welcome page with the custom HTML content for Le Gout.
+Once Apache is successfully installed and verified, replace the default welcome page with the custom HTML content for Le Gout.
 
 ## Edit index.html on the Webserver ##
-connect to the EC2 instance via SSH
-navigate to the default Apache web root directory and remove the existing default index.html file, back the file before removal.
+Connect to the EC2 instance via SSH,
+navigate to the default Apache web root directory, and remove the existing default index.html file, back up the file before removal.
 
 ```
 cd /var/www/html/
 ls -l
-sudo mv index.html index.html.bak
-paste cstome HTML code in the files
+sudo mv index.html index.html.Back
+Paste custom HTML code in the files
 ```
 ## Register a Domain Name:##
 Create a Hosted Zone
-In the AWS console, search for and navigate to "Route 53"
-in the left navigation pane,under DNS management,Click on hosted zones.
-click create hosted zone button.
-Enter domain name (Legout.click).in the domain field.
-select public hosted zone for the type. click create hosted zone.
+In the AWS console, search for and navigate to "Route 53."
+In the left navigation pane, under DNS management, click on hosted zones.
+Click the Create Hosted Zone button.
+Enter domain name (Legout.click). In the domain field.
+Select a public hosted zone for the type. Click Create Hosted Zone.
 
-##Create DNS Records in Route 53:##
-In Route 53 hosted zone, click "Create record."
+## Create DNS Records in Route 53:##
+In the Route 53 hosted zone, click "Create record."
 Record type: A (IPv4)
-Value: Enter  EC2 instance's Public IP address.
+Value: Enter  the EC2 instance's Public IP address.
 Routing policy: Simple routing
 Click "Create records."
 Note: It can take a few minutes to up to 48 hours for DNS changes to propagate across the internet.periodically teste the domain in the browser.
 
 ## Setting Up HTTPS with SSL#
 Implementing HTTPS is very crucial for website security and user trust.
-an SSL certificate is Essential to  enable HTTPS (secure connection).
+An SSL certificate is Essential to  enable HTTPS (secure connection).
 
 Install Certbot 
 
@@ -161,19 +171,19 @@ sudo certbot --apache
 
 ```
 ##Follow the prompts##
-Enter email address: Enter a vaild email for urgent renewal notices and security warnings.
-Terms of service: Agree to the let's Encrypt terms of service.
+Enter email address: Enter a valid email for urgent renewal notices and security warnings.
+Terms of service: Agree to the Let's Encrypt terms of service.
 Enter your domain name (e.g.,legout.click).
 redirect HTTP to HTTPS (recommended: "2: Redirect").
-Automatic Renewal this will ensure that all vistors use the secure connection.
-open a web brower and navigate to http://legout.click.
-The browser will automatically redirected to https://legout.click
-check for the padlock icon in the browser address bar,indicating a secure,encrypted connection.This confirms that HTTPS is Successfully enabled and working.
+Automatic Renewal: This will ensure that all visitors use the secure connection.
+Open a web browser and navigate to http://legout.click.
+The browser will automatically be redirected to https://legout.click
+Check for the padlock icon in the browser address bar, indicating a secure, encrypted connection. This confirms that HTTPS is successfully enabled and working.
 
 ## Firewall ##
-To further enchance the security of Le Gout server beyond AWS security Groups a software firewall(ufw)will provide additional layer of defense.
-connect to EC2 instance via SSH
-scp -i your-key.pem * ubuntu@<EC2-IP>:/var/www/html/
+To further enhance the security of the Le Gout server beyond AWS security Groups, a software firewall(ufw)will provide an additional layer of defense.
+Connect to EC2 instance via SSH
+, scp -i your-key.pem * ubuntu@<EC2-IP>:/var/www/html/
 Enable Firewall
 ```
 sudo ufw allow ssh
@@ -184,9 +194,9 @@ sudo apt update && sudo apt upgrade -y
 ```
 
 ## Automate Content Deployment Script
-To streamline future updates to Le Gout a simple shell scrip was created to automate the transfer of new HTML files.
+To streamline future updates to Le Gout, a simple shell script was created to automate the transfer of new HTML files.
 
-This deploy_legout.sh script automates the secure transfer of the entire "Le Gout" website content to the production server. It leverages scp (Secure Copy Protocol) to copy files from a specified local directory to the Apache web root on the EC2 instance. After transfer, it ensures correct file ownership and permissions for the Apache web server (www-data user) to maintain proper functionality and security.
+This deploy_legout.sh script automates the secure transfer of the entire "Le Gout" website content to the production server. It leverages SCP (Secure Copy Protocol) to copy files from a specified local directory to the Apache web root on the EC2 instance. After transfer, it ensures correct file ownership and permissions for the Apache web server (www-data user) to maintain proper functionality and security.
 
 ## References##
 Certbot Apache—https://certbot.eff.org/instructions
