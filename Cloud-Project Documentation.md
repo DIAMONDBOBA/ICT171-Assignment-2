@@ -5,7 +5,8 @@ A Step-by-step guide to deploying the ** Le Gout** food blog on Amazon Web Servi
 >**Author:** Sarah Katuku
 
 >**Student ID:** 35396921
->** Domain:** https://legout.click
+
+>**Domain:** https://legout.click
 
 
 # Introduction#
@@ -24,58 +25,74 @@ From the EC2 Dashboard, click on the "Launch instance" button to begin the insta
 Figure 1: Initiating a new EC2 instance launch from the EC2 Dashboard
 <img width="951" alt="image" src="https://github.com/user-attachments/assets/ffe03705-bcfd-420c-9593-fb4914316c39" />
 
-##Choose an Amazon Machine Image(AMI:##
-To create LeGout, select the Ubuntu Server and ensure it's free tier eligible to save costs.
+## Choose an Amazon Machine Image(AMI:##
+To create LeGout, select the t2.micro instance type to utilize AWS Free Tier benefits.
 
-**Choose an Instance Type:**
 Select the t2.micro instance type
+
+Figure 2: Selection of Ubuntu Server AMI and t2.micro instance type.
 <img width="944" alt="image" src="https://github.com/user-attachments/assets/e1351277-2cc1-4313-8fa8-d8d9c15ece8a" />
 
 
-**Configure Instance:**
+## Configure Instance:##
 Since this is a simple food vlog, some default settings are fine 
 
-**Storage:** The default storage is okay; this can always be increased later for content that requires more space, such as high-resolution images. For now, 8 GB is  okay.
+## Storage:##
+The default storage is okay; this can always be increased later for content that requires more space, such as high-resolution images. For now, 8 GB is  okay.
 
-**Name Tag:** add a tag
-Name: Le Gout food vlog  to easily identify the instance.
+## Name Tag:## add a tag
+Name: Le Gout Food Vlog Server for easy identification.
 
 **Configure Security Group:**
 
-This is very crucical.creat a new security group
+This is very crucial. Create a new security group
 Add Rules SSH (Port 22): Allows a secure connection to the instance via the command line.
 HTTP (Port 80): Allows web traffic (unencrypted).
-HTTPS (Port 443): Allows secure web traffic (encrypted): Allow SSH Access).
-give the security group a descriptive name (e.g., legoutSG) 
+HTTPS (Port 443): Allows secure web traffic (encrypted): Allow SSH Access.
+Give the security group a descriptive name (e.g., legoutSG) 
+
+Figure 3: Inbound rules configured for the LeGoutWebServerSG to allow SSH, HTTP, and HTTPS traffic.
 
 <img width="946" alt="image" src="https://github.com/user-attachments/assets/f3406415-007c-4712-ba6b-ffc15aed91e1" />
 
 
 
 **Key Pair:** Create a New Key Pair
-a prompt to create a new key pair (a .pem file). should show up
+A prompt to create a new key pair (a PEM file). should show up
 This is essential for securely connecting to the instance.
 Download Key Pair: immediately and store it in a secure, private location.
-This is the only means to securely connect to the instance via SSH.Without it,access to the server will be impossible.
+This is the only means to securely connect to the instance via SSH. Without it, access to the server will be impossible.
+
+
+Figure 4: Creation and download of the AWS key pair.pem for secure SSH access.
 <img width="933" alt="image" src="https://github.com/user-attachments/assets/8e56b262-b1a6-4442-9392-afaa9f314696" />
-after reviewing all seetings click on Launch instances
+
+
+Review all configured settings.
+Confirm the launch by clicking the "Launch instances" button
 <img width="587" alt="image" src="https://github.com/user-attachments/assets/ebd419e8-3d3e-4158-b16c-15e9586c6ee9" />
 
 
-## Allocate and associate elastic IP 
-By defult ,EC2 instances are assigned a dynamic public IP address that changes upon stopping and starting the instance. To ensure a consistent and persisten public IP address for Le Gout, an Elastic IP was allocated and associated to easly access the server even after a restart.
+## Allocating and Associating an Elastic IP Address
+EC2 instances receive dynamic public IP addresses by default. To ensure a consistent and persistent public IP for "Le Gout," an Elastic IP was allocated and associated.
 
-Navigate to the **EC2 Dashboard > Network & Security > Elastic IPs**
-Click **Allocate Elastic IP**, then **Associate** it with the instance.
+Navigate to EC2 Dashboard > Network & Security > Elastic IPs.
+Click "Allocate Elastic IP address".
+Select the newly allocated Elastic IP, click "Actions," then "Associate Elastic IP address."
+Select the Le Gout Food Vlog Server instance and confirm the association.
+
+Figure 6: Initiating Elastic IP allocation.
 <img width="956" alt="image" src="https://github.com/user-attachments/assets/4b325639-69bb-4e45-a9a3-4e66cbcdf619" />
 
+Figure 7: Associating the Elastic IP with the running EC2 instance.
 <img width="944" alt="image" src="https://github.com/user-attachments/assets/ec084f24-7916-4a84-b541-45c5761c92cf" />
 
+Figure 8: Confirmation of Elastic IP association details
 <img width="959" alt="image" src="https://github.com/user-attachments/assets/b19f12fd-a00e-4f88-a596-cea660e03ccb" />
 
 
 ## Connect to server & Configure
-on the local machine, navagate to the directory where the keypair.pem file is saved.
+on the local machine, navigate to the directory where the keypair.pem file is saved.
 ### SSH into the EC2 Instance
 connect to the EC2 instance using SSH
 
