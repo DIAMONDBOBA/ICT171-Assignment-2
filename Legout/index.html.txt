@@ -1,0 +1,821 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Le Goût - A Food Vlog</title>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Playfair+Display:wght@400;700&display=swap" rel="stylesheet">
+
+  <style>
+    /* Basic Reset & Body Styling */
+    body {
+        margin: 0;
+        font-family: 'Inter', sans-serif; /* Modern sans-serif font */
+        background-color: #FDF7F8; /* A very light, almost white, subtle pink */
+        color: #333;
+        line-height: 1.7; /* Generous line height for readability */
+        display: flex;
+        flex-direction: column;
+        min-height: 100vh; /* Ensure footer stays at bottom */
+        -webkit-font-smoothing: antialiased; /* Smoother font rendering */
+        -moz-osx-font-smoothing: grayscale;
+    }
+
+    /* Site Wrapper (for overall page structure) */
+    .site {
+        display: flex;
+        flex-direction: column;
+        width: 100%;
+    }
+
+    /* Header Styling */
+    header {
+        background-color: #FFFFFF; /* Clean white header */
+        padding: 35px 0; /* More vertical padding */
+        text-align: center;
+        box-shadow: 0 2px 10px rgba(0,0,0,0.04); /* Subtle, modern shadow */
+        border-bottom: 1px solid #F0F0F0; /* Very light border */
+    }
+
+    .header-container {
+        max-width: 1100px; /* Slightly wider header container */
+        margin: 0 auto;
+        padding: 0 30px; /* More horizontal padding */
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+    }
+
+    header h1 { /* Targeting the h1 directly in the header */
+        margin: 0;
+        font-family: 'Playfair Display', serif;
+        font-size: 4em;
+        color: #C2185B;
+        text-shadow: none;
+        line-height: 1;
+        letter-spacing: -0.02em;
+    }
+
+    header p { /* Targeting the p directly in the header */
+        font-size: 1.3em;
+        color: #E91E63; /* Use a vibrant pink for the tagline */
+        margin-top: 5px;
+    }
+
+    /* Navigation Bar - Modern & Minimal */
+    nav { /* Targeting the nav directly */
+        width: 100%;
+        margin-top: 25px; /* Space between header and nav */
+        padding: 10px 0; /* Padding for the nav bar */
+        background-color: #FFEBEE; /* Light pink background for nav */
+        box-shadow: 0 1px 5px rgba(0,0,0,0.05); /* Subtle shadow */
+        border-radius: 10px;
+        max-width: 1000px;
+        margin-left: auto;
+        margin-right: auto;
+    }
+
+    .navbar {
+        list-style: none;
+        padding: 0;
+        margin: 0;
+        display: flex;
+        justify-content: center;
+        flex-wrap: wrap;
+        gap: 25px; /* More space between nav items */
+    }
+
+    .navbar li {
+        margin: 0;
+    }
+
+    .navbar a {
+        color: #AD1457; /* Deep pink for nav links */
+        text-decoration: none;
+        font-weight: 600;
+        font-size: 1.05em;
+        padding: 10px 18px; /* More padding for better touch targets */
+        border-radius: 8px; /* Slightly more rounded buttons */
+        transition: background-color 0.3s ease, color 0.3s ease, transform 0.2s ease;
+        position: relative; /* For underline effect */
+    }
+
+    .navbar a::after {
+        content: '';
+        position: absolute;
+        width: 0;
+        height: 2px;
+        bottom: -5px;
+        left: 50%;
+        transform: translateX(-50%);
+        background-color: #E91E63; /* Pink underline */
+        transition: width 0.3s ease;
+    }
+
+    .navbar a:hover::after,
+    .navbar a:focus::after {
+        width: 100%; /* Expand underline on hover/focus */
+    }
+
+    .navbar a:hover,
+    .navbar a:focus {
+        background-color: #FFF0F5; /* Very light pink background on hover */
+        color: #C2185B; /* Darker pink text on hover */
+        transform: translateY(-2px); /* Subtle lift */
+    }
+
+    /* Main Content Area */
+    main { /* Targeting the main element directly */
+        flex-grow: 1;
+        padding: 40px 0; /* More vertical padding */
+        max-width: 850px; /* Consistent content width */
+        margin: 0 auto;
+        padding-left: 30px; /* Consistent padding */
+        padding-right: 30px; /* Consistent padding */
+    }
+
+    section { /* General section styling for main content */
+        background-color: #FFFFFF;
+        padding: 50px; /* Generous padding inside sections */
+        border-radius: 12px; /* Softly rounded corners */
+        box-shadow: 0 5px 20px rgba(0,0,0,0.06); /* Modern, diffused shadow */
+        margin-bottom: 40px; /* Space between sections */
+    }
+
+    section h2 { /* General h2 styling within sections */
+        font-family: 'Playfair Display', serif;
+        font-size: 3.2em; /* Larger entry title */
+        color: #E91E63; /* Vibrant pink for titles */
+        margin-top: 0;
+        margin-bottom: 20px;
+        letter-spacing: -0.01em;
+        text-align: center; /* Center align section titles */
+    }
+
+    section p { /* General paragraph styling within sections */
+        font-size: 1.1em; /* Slightly larger body text */
+        color: #444;
+        line-height: 1.8; /* Increased line height for comfort */
+        text-align: center; /* Center align intro paragraph */
+        max-width: 700px; /* Constrain paragraph width */
+        margin-left: auto;
+        margin-right: auto;
+    }
+
+    /* Blockquote Styling (if used in main content) */
+    blockquote {
+        border-left: 5px solid #F48FB1; /* Slightly thicker, modern border */
+        padding: 20px 25px; /* More padding */
+        margin: 35px 0; /* More vertical margin */
+        font-style: italic;
+        color: #555;
+        background-color: #FFF9FC; /* Very light, subtle pink background for quote */
+        border-radius: 6px; /* Softly rounded corners */
+        box-shadow: 0 1px 5px rgba(0,0,0,0.03); /* Very subtle shadow */
+        text-align: left; /* Blockquote text should be left-aligned */
+    }
+
+    blockquote p {
+        margin-bottom: 10px;
+        text-align: left; /* Ensure paragraph inside blockquote is left-aligned */
+    }
+
+    blockquote cite {
+        display: block;
+        margin-top: 15px;
+        font-size: 0.95em;
+        color: #AD1457; /* Deep pink for citation */
+        font-style: normal;
+        font-weight: 500;
+        text-align: left; /* Ensure cite is left-aligned */
+    }
+
+    .section-subtitle { /* For sub-headings within sections like "Feast Your Eyes!" */
+        font-family: 'Playfair Display', serif;
+        font-size: 2.3em; /* Larger sub-heading */
+        color: #C2185B; /* Deep berry pink for sub-headings */
+        text-align: center;
+        margin-top: 50px; /* More space above */
+        margin-bottom: 35px; /* More space below */
+        border-bottom: 1px solid #F8BBD0; /* Subtle border */
+        padding-bottom: 15px;
+        letter-spacing: -0.01em;
+    }
+
+    /* Image Gallery Grid */
+    .image-gallery-grid {
+        display: grid;
+        grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); /* Responsive grid */
+        gap: 30px; /* More space between images */
+        margin: 40px 0; /* More vertical margin */
+    }
+
+    .gallery-item {
+        margin: 0;
+        background-color: #FFF;
+        border-radius: 10px; /* Softly rounded image containers */
+        overflow: hidden;
+        box-shadow: 0 4px 15px rgba(0,0,0,0.1); /* Modern, diffused shadow */
+        transition: transform 0.3s ease, box-shadow 0.3s ease;
+        display: flex;
+        flex-direction: column;
+    }
+
+    .gallery-item:hover {
+        transform: translateY(-8px); /* More pronounced lift effect */
+        box-shadow: 0 8px 25px rgba(0,0,0,0.2); /* Deeper shadow on hover */
+    }
+
+    .gallery-item img {
+        width: 100%;
+        height: 240px; /* Slightly taller consistent image height */
+        object-fit: cover;
+        display: block;
+    }
+
+    .gallery-item figcaption {
+        padding: 15px;
+        font-size: 1em; /* Slightly larger caption text */
+        color: #555;
+        background-color: #FFEBEE; /* Lightest pink for caption background */
+        border-top: 1px solid #FFCDD2;
+        text-align: center;
+        font-weight: 500;
+    }
+
+    /* Recipe Links (if added to index.html) */
+    .recipe-links {
+        list-style: none; /* Remove default bullet points */
+        padding-left: 0; /* Remove default padding */
+        margin-top: 30px;
+        margin-bottom: 40px;
+        display: grid;
+        grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); /* Multi-column links */
+        gap: 10px 20px; /* Row and column gap */
+    }
+
+    .recipe-links li {
+        margin-bottom: 5px; /* Reduced vertical margin for list items */
+        position: relative;
+        padding-left: 20px; /* Space for custom bullet */
+    }
+
+    .recipe-links li::before {
+        content: '•'; /* Custom bullet point */
+        color: #E91E63; /* Pink bullet */
+        position: absolute;
+        left: 0;
+        top: 0;
+    }
+
+    .recipe-links a {
+        color: #E91E63; /* Vibrant pink for recipe links */
+        text-decoration: none;
+        font-weight: 500;
+        transition: color 0.2s ease;
+    }
+
+    .recipe-links a:hover {
+        color: #C2185B; /* Darker pink on hover */
+        text-decoration: underline;
+    }
+
+    /* Comments Area */
+    .comments-area {
+        margin-top: 50px;
+        padding-top: 40px;
+        border-top: 1px solid #F0F0F0;
+    }
+
+    .comments-title {
+        font-family: 'Playfair Display', serif;
+        font-size: 2.5em;
+        color: #C2185B;
+        text-align: center;
+        margin-bottom: 35px;
+    }
+
+    .comment-form {
+        display: flex;
+        flex-direction: column;
+        gap: 20px; /* More space between form fields */
+        margin-bottom: 50px;
+    }
+
+    .form-group label {
+        font-weight: 600; /* Bolder labels */
+        color: #AD1457;
+        font-size: 1.05em;
+        display: block;
+        margin-bottom: 8px; /* More space below label */
+    }
+
+    .comment-form input[type="text"],
+    .comment-form input[type="email"],
+    .comment-form textarea {
+        padding: 14px; /* More padding */
+        border: 1px solid #FFCDD2;
+        border-radius: 8px; /* More rounded inputs */
+        font-size: 1em;
+        width: 100%;
+        box-sizing: border-box;
+        background-color: #FFF; /* Ensure white background */
+        transition: border-color 0.2s ease, box-shadow 0.2s ease;
+    }
+
+    .comment-form input[type="text"]:focus,
+    .comment-form input[type="email"]:focus,
+    .comment-form textarea:focus {
+        border-color: #E91E63; /* Vibrant pink on focus */
+        outline: none;
+        box-shadow: 0 0 8px rgba(233, 30, 99, 0.2); /* Clearer focus shadow */
+    }
+
+    .comment-form button {
+        background-color: #E91E63; /* Vibrant pink button */
+        color: white;
+        padding: 15px 30px; /* Larger button */
+        border: none;
+        border-radius: 10px; /* More rounded button */
+        font-size: 1.15em; /* Larger text on button */
+        cursor: pointer;
+        transition: background-color 0.3s ease, transform 0.2s ease, box-shadow 0.3s ease;
+        align-self: flex-start; /* Align to left */
+        box-shadow: 0 4px 10px rgba(0,0,0,0.1);
+    }
+
+    .comment-form button:hover,
+    .comment-form button:focus {
+        background-color: #C2185B; /* Darker pink on hover */
+        transform: translateY(-3px);
+        box-shadow: 0 6px 15px rgba(0,0,0,0.2);
+    }
+
+    .comments-display {
+        margin-top: 40px;
+    }
+
+    .recent-comments-title {
+        font-family: 'Playfair Display', serif;
+        color: #AD1457;
+        margin-bottom: 25px;
+        border-bottom: 1px solid #F8BBD0;
+        padding-bottom: 10px;
+        text-align: center;
+        font-size: 2em;
+    }
+
+    .single-comment {
+        background-color: #FFFBFD; /* Even lighter pink for comments */
+        padding: 20px;
+        border-radius: 8px; /* Softly rounded comments */
+        margin-bottom: 20px; /* More space between comments */
+        border: 1px solid #FFEFF4;
+        box-shadow: 0 1px 6px rgba(0,0,0,0.04);
+    }
+
+    .single-comment h5 {
+        color: #E91E63;
+        margin-top: 0;
+        margin-bottom: 8px;
+        font-size: 1.1em;
+        display: flex;
+        justify-content: space-between;
+        align-items: baseline;
+        font-weight: 600;
+    }
+
+    .single-comment .comment-date {
+        font-size: 0.85em;
+        color: #888;
+        font-weight: normal;
+    }
+
+    .single-comment p {
+        color: #555;
+        font-size: 1em;
+    }
+
+    /* Footer Styling */
+    footer { /* Targeting the footer directly */
+        background-color: #F8BBD0; /* Light pink footer background */
+        color: #AD1457; /* Deep pink text for footer */
+        padding: 50px 30px 25px; /* More padding */
+        margin-top: 60px; /* More space above footer */
+        border-top: 1px solid #F0F0F0;
+        box-shadow: 0 -2px 10px rgba(0,0,0,0.04);
+    }
+
+    .footer-container {
+        max-width: 1100px; /* Aligns with header/main */
+        margin: 0 auto;
+        display: grid;
+        grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+        gap: 40px; /* More space between columns */
+        padding-bottom: 40px;
+        border-bottom: 1px solid #F48FB1; /* Medium pink separator */
+    }
+
+    .footer-column h3 {
+        font-family: 'Playfair Display', serif;
+        color: #880E4F; /* Darker pink for footer headings */
+        font-size: 1.6em; /* Slightly larger footer headings */
+        margin-bottom: 25px;
+        letter-spacing: -0.01em;
+    }
+
+    .footer-column ul {
+        list-style: none;
+        padding: 0;
+    }
+
+    .footer-column ul li {
+        margin-bottom: 10px;
+    }
+
+    .footer-column ul li a {
+        color: #AD1457;
+        text-decoration: none;
+        transition: color 0.2s ease;
+    }
+
+    .footer-column ul li a:hover {
+        color: #E91E63;
+    }
+
+    .footer-column p {
+        font-size: 0.95em;
+        line-height: 1.6;
+        margin-bottom: 18px;
+    }
+
+    .tag-cloud {
+        display: flex;
+        flex-wrap: wrap;
+        gap: 10px; /* More space for tags */
+    }
+
+    .tag-cloud li {
+        margin-bottom: 0;
+    }
+
+    .tag-cloud a {
+        background-color: #FFEBEE;
+        color: #AD1457;
+        padding: 7px 12px; /* More padding for tags */
+        border-radius: 5px; /* Slightly more rounded tags */
+        font-size: 0.9em;
+        text-decoration: none;
+        transition: background-color 0.2s ease, color 0.2s ease;
+    }
+
+    .tag-cloud a:hover {
+        background-color: #FFCDD2;
+        color: #C2185B;
+    }
+
+    .search-form {
+        display: flex;
+        flex-direction: column;
+        gap: 12px;
+        margin-bottom: 25px;
+    }
+
+    .search-field {
+        padding: 12px 15px; /* More padding for search field */
+        border: 1px solid #FFCDD2;
+        border-radius: 8px;
+        font-size: 0.95em;
+        width: 100%;
+        box-sizing: border-box;
+        background-color: #FFF;
+    }
+
+    .search-submit {
+        background-color: #AD1457;
+        color: white;
+        padding: 12px 20px;
+        border: none;
+        border-radius: 8px;
+        font-size: 1em;
+        cursor: pointer;
+        transition: background-color 0.2s ease;
+    }
+
+    .search-submit:hover {
+        background-color: #E91E63;
+    }
+
+    .subscribe-form {
+        display: flex;
+        flex-direction: column;
+        gap: 12px;
+        margin-top: 20px;
+    }
+
+    .subscribe-form input[type="email"] {
+        padding: 12px 15px;
+        border: 1px solid #FFCDD2;
+        border-radius: 8px;
+        font-size: 0.95em;
+        background-color: #FFF;
+        width: 100%;
+        box-sizing: border-box;
+    }
+
+    .subscribe-form button {
+        background-color: #AD1457;
+        color: white;
+        padding: 12px 20px;
+        border: none;
+        border-radius: 8px;
+        font-size: 1em;
+        cursor: pointer;
+        transition: background-color 0.2s ease;
+    }
+
+    .subscribe-form button:hover {
+        background-color: #E91E63;
+    }
+
+    .site-info-wrap {
+        text-align: center;
+        padding-top: 25px;
+        border-top: 1px solid #F48FB1;
+        margin-top: 25px;
+    }
+
+    .site-info p {
+        font-size: 0.85em;
+        color: #AD1457;
+        margin: 8px 0;
+    }
+
+    .site-info a {
+        color: #AD1457;
+        text-decoration: none;
+        transition: color 0.2s ease;
+    }
+
+    .site-info a:hover {
+        color: #E91E63;
+    }
+
+    /* Responsive Adjustments */
+    @media (max-width: 900px) {
+        .header-container, .footer-container, main { /* Adjusted main for responsiveness */
+            padding: 0 20px;
+        }
+
+        header h1 {
+            font-size: 3.5em;
+        }
+
+        .navbar {
+            gap: 15px;
+        }
+
+        .navbar a {
+            padding: 8px 15px;
+        }
+
+        section { /* General section padding adjustment */
+            padding: 40px;
+        }
+
+        section h2 {
+            font-size: 2.8em;
+        }
+
+        section p {
+            font-size: 1em;
+        }
+
+        .section-subtitle {
+            font-size: 2em;
+        }
+
+        .image-gallery-grid {
+            grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+            gap: 20px;
+        }
+
+        .gallery-item img {
+            height: 200px;
+        }
+
+        .comments-title {
+            font-size: 2.2em;
+        }
+
+        .recent-comments-title {
+            font-size: 1.8em;
+        }
+    }
+
+    @media (max-width: 600px) {
+        header h1 {
+            font-size: 2.8em;
+        }
+
+        header p {
+            font-size: 1.1em;
+        }
+
+        nav {
+            border-radius: 0;
+            max-width: 100%;
+        }
+
+        .navbar {
+            flex-direction: column;
+            gap: 10px;
+        }
+
+        .navbar a {
+            width: calc(100% - 36px); /* Full width with padding */
+            text-align: center;
+        }
+
+        section { /* General section padding adjustment */
+            padding: 25px;
+            border-radius: 8px;
+        }
+
+        section h2 {
+            font-size: 2.2em;
+        }
+
+        section p {
+            font-size: 0.95em;
+        }
+
+        .section-subtitle {
+            font-size: 1.8em;
+        }
+
+        .image-gallery-grid {
+            grid-template-columns: 1fr; /* Single column on very small screens */
+        }
+
+        .footer-container {
+            grid-template-columns: 1fr; /* Single column footer */
+            text-align: center;
+        }
+
+        .footer-column ul {
+            margin-bottom: 20px;
+        }
+
+        .tag-cloud {
+            justify-content: center;
+        }
+
+        .search-form, .subscribe-form {
+            align-items: center;
+        }
+
+        .comment-form button {
+            align-self: stretch; /* Full width button */
+        }
+    }
+  </style>
+</head>
+<body>
+  <div id="page" class="site">
+    <header>
+      <h1>Le Goût</h1>
+      <p>A Journey Through Global Cuisine</p>
+      <nav>
+        <ul class="navbar">
+          <li><a href="index.html"></a></li>
+          <li><a href="about.html">About</a></li>
+          <li><a href="asia.html">Asia</a></li>
+          <li><a href="europe.html">Europe</a></li>
+          <li><a href="africa.html">Africa</a></li>
+          <li><a href="streetfood.html">Street Food</a></li>
+        </ul>
+      </nav>
+    </header>
+
+    <main>
+      <section class="intro">
+        <h2>Welcome to Le Goût 🍽️</h2>
+        <p>Explore food stories and culture from around the world, one plate at a time. Our mission is to bring you closer to diverse culinary traditions and inspire your next kitchen adventure!</p>
+      </section>
+
+      <section class="image-gallery-section"> <h3 class="section-subtitle">Feast Your Eyes!</h3>
+        <div class="image-gallery-grid">
+          <figure class="gallery-item">
+            <img src="https://placehold.co/400x300/FCE4EC/880E4F?text=Nutella+Brownies" alt="Nutella Brownies">
+            <figcaption>Decadent Nutella Brownies</figcaption>
+          </figure>
+          <figure class="gallery-item">
+            <img src="https://placehold.co/400x300/F8BBD0/880E4F?text=Panna+Cotta" alt="Panna Cotta with Finger Lime">
+            <figcaption>Refreshing Panna Cotta with Finger Lime</figcaption>
+          </figure>
+          <figure class="gallery-item">
+            <img src="https://placehold.co/400x300/F48FB1/880E4F?text=Coconut+Cupcakes" alt="Coconut Cupcakes">
+            <figcaption>Fluffy Coconut Cupcakes</figcaption>
+          </figure>
+          <figure class="gallery-item">
+            <img src="https://placehold.co/400x300/EC407A/FFFFFF?text=Strawberry+Donuts" alt="Doughnuts with Strawberry Sauce">
+            <figcaption>Sweet Doughnuts with Strawberry Sauce</figcaption>
+          </figure>
+          <figure class="gallery-item">
+            <img src="https://placehold.co/400x300/E91E63/FFFFFF?text=Almond+Cake" alt="Almond and Vanilla Cake">
+            <figcaption>Delicate Almond and Vanilla Cake</figcaption>
+          </figure>
+          <figure class="gallery-item">
+            <img src="https://placehold.co/400x300/D81B60/FFFFFF?text=Ginger+Slice" alt="Oat, Date and Ginger Slice">
+            <figcaption>Wholesome Oat, Date and Ginger Slice</figcaption>
+          </figure>
+        </div>
+      </section>
+
+      <section class="comment-section">
+        <h3 class="comments-title">Leave a Comment!</h3>
+        <form class="comment-form">
+          <div class="form-group">
+            <label for="name">Name:</label>
+            <input type="text" id="name" name="name" required>
+          </div>
+          <div class="form-group">
+            <label for="email">Email (will not be published):</label>
+            <input type="email" id="email" name="email" required>
+          </div>
+          <div class="form-group">
+            <label for="comment">Your Comment:</label>
+            <textarea id="comment" name="comment" rows="6" required></textarea>
+          </div>
+          <button type="submit">Post Comment</button>
+        </form>
+        <div class="comments-display">
+          <h4 class="recent-comments-title">Recent Comments</h4>
+          <div class="single-comment">
+            <h5>Foodie Fan <span class="comment-date">May 26, 2025</span></h5>
+            <p>Love your content! This site looks amazing and the pink theme is so charming!</p>
+          </div>
+          <div class="single-comment">
+            <h5>Hungry Traveler <span class="comment-date">May 25, 2025</span></h5>
+            <p>Can't wait to see more global cuisine! The gallery makes me so hungry!</p>
+          </div>
+        </div>
+      </section>
+    </main>
+
+    <footer>
+      <div class="footer-container">
+        <div class="footer-column">
+          <h3>Find Recipes</h3>
+          <ul class="tag-cloud">
+            <li><a href="#">baking</a></li>
+            <li><a href="#">breakfast</a></li>
+            <li><a href="#">brunch</a></li>
+            <li><a href="#">dessert</a></li>
+            <li><a href="#">dinner</a></li>
+            <li><a href="#">ideas</a></li>
+            <li><a href="#">lunch</a></li>
+            <li><a href="#">recipes</a></li>
+            <li><a href="#">salad</a></li>
+            <li><a href="#">snacks</a></li>
+          </ul>
+        </div>
+        <div class="footer-column">
+          <h3>Search for recipes</h3>
+          <form role="search" method="get" class="search-form">
+            <label>
+              <span class="screen-reader-text">Search for:</span>
+              <input type="search" class="search-field" placeholder="Enter keywords" value="" name="s" autocomplete="off">
+            </label>
+            <input type="submit" class="search-submit" value="Search">
+          </form>
+          <h3>Follow us on Social Media</h3>
+          <p>Follow <a href="https://www.facebook.com/your-legout-page" target="_blank" rel="noopener noreferrer">Le Goût on Facebook</a> and share your photos and recipes.</p>
+          <p>You can also find us on:</p>
+          <div class="social-links">
+            <a href="https://www.instagram.com/your-legout-instagram" target="_blank" rel="noopener noreferrer" aria-label="Instagram"><img src="https://placehold.co/30x30/FFC0CB/880E4F?text=IG" alt="Instagram"></a>
+            <a href="https://www.pinterest.com/your-legout-pinterest" target="_blank" rel="noopener noreferrer" aria-label="Pinterest"><img src="https://placehold.co/30x30/FFC0CB/880E4F?text=PT" alt="Pinterest"></a>
+            <a href="https://twitter.com/your-legout-twitter" target="_blank" rel="noopener noreferrer" aria-label="Twitter"><img src="https://placehold.co/30x30/FFC0CB/880E4F?text=TW" alt="Twitter/X"></a>
+          </div>
+        </div>
+        <div class="footer-column">
+          <h3>Subscribe to Blog via Email</h3>
+          <p>Enter your email address to subscribe to this blog and receive notifications of new posts by email.</p>
+          <form class="subscribe-form">
+            <input type="email" placeholder="Email Address" required>
+            <button type="submit">Subscribe</button>
+          </form>
+          <h3>Copyright</h3>
+          <p>All recipes and photos on this blog are licensed under a Creative Commons CC-BY-NC licence. This means you are free to use them, as long as it is not for commercial purposes, and you need to attribute Le Goût as the creator.</p>
+        </div>
+      </div>
+      <div class="site-info-wrap">
+        <div class="site-info">
+          <p>&copy; 2025 Le Goût. All rights reserved.</p>
+        </div>
+      </div>
+    </footer>
+  </div>
+</body>
+</html>

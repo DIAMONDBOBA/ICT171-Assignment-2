@@ -1,0 +1,398 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Street Food – Le Goût</title>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Playfair+Display:wght@400;700&display=swap" rel="stylesheet">
+
+  <style>
+    /* Basic Reset & Body Styling */
+    body {
+        margin: 0;
+        font-family: 'Inter', sans-serif; /* Modern sans-serif font */
+        background-color: #FDF7F8; /* A very light, almost white, subtle pink */
+        color: #333;
+        line-height: 1.7; /* Generous line height for readability */
+        display: flex;
+        flex-direction: column;
+        min-height: 100vh; /* Ensure footer stays at bottom */
+        -webkit-font-smoothing: antialiased; /* Smoother font rendering */
+        -moz-osx-font-smoothing: grayscale;
+    }
+
+    /* Site Wrapper (for overall page structure) */
+    .site {
+        display: flex;
+        flex-direction: column;
+        width: 100%;
+    }
+
+    /* Header Styling */
+    header {
+        background-color: #FFFFFF; /* Clean white header */
+        padding: 35px 0; /* More vertical padding */
+        text-align: center;
+        box-shadow: 0 2px 10px rgba(0,0,0,0.04); /* Subtle, modern shadow */
+        border-bottom: 1px solid #F0F0F0; /* Very light border */
+    }
+
+    .header-container {
+        max-width: 1100px; /* Slightly wider header container */
+        margin: 0 auto;
+        padding: 0 30px; /* More horizontal padding */
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+    }
+
+    header h1 { /* Targeting the h1 directly in the header */
+        margin: 0;
+        font-family: 'Playfair Display', serif;
+        font-size: 4em;
+        color: #C2185B;
+        text-shadow: none;
+        line-height: 1;
+        letter-spacing: -0.02em;
+    }
+
+    header p { /* Targeting the p directly in the header */
+        font-size: 1.3em;
+        color: #E91E63; /* Use a vibrant pink for the tagline */
+        margin-top: 5px;
+    }
+
+    /* Navigation Bar - Modern & Minimal */
+    nav { /* Targeting the nav directly */
+        width: 100%;
+        margin-top: 25px; /* Space between header and nav */
+        padding: 10px 0; /* Padding for the nav bar */
+        background-color: #FFEBEE; /* Light pink background for nav */
+        box-shadow: 0 1px 5px rgba(0,0,0,0.05); /* Subtle shadow */
+        border-radius: 10px;
+        max-width: 1000px;
+        margin-left: auto;
+        margin-right: auto;
+    }
+
+    .navbar {
+        list-style: none;
+        padding: 0;
+        margin: 0;
+        display: flex;
+        justify-content: center;
+        flex-wrap: wrap;
+        gap: 25px; /* More space between nav items */
+    }
+
+    .navbar a {
+        color: #AD1457; /* Deep pink for nav links */
+        text-decoration: none;
+        font-weight: 600;
+        font-size: 1.05em;
+        padding: 10px 18px; /* More padding for better touch targets */
+        border-radius: 8px; /* Slightly more rounded buttons */
+        transition: background-color 0.3s ease, color 0.3s ease, transform 0.2s ease;
+        position: relative; /* For underline effect */
+    }
+
+    .navbar a::after {
+        content: '';
+        position: absolute;
+        width: 0;
+        height: 2px;
+        bottom: -5px;
+        left: 50%;
+        transform: translateX(-50%);
+        background-color: #E91E63; /* Pink underline */
+        transition: width 0.3s ease;
+    }
+
+    .navbar a:hover::after,
+    .navbar a:focus::after {
+        width: 100%; /* Expand underline on hover/focus */
+    }
+
+    .navbar a:hover,
+    .navbar a:focus {
+        background-color: #FFF0F5; /* Very light pink background on hover */
+        color: #C2185B; /* Darker pink text on hover */
+        transform: translateY(-2px); /* Subtle lift */
+    }
+
+    /* Main Content Area */
+    main.gallery { /* Targeted for specific gallery layout */
+        flex-grow: 1;
+        padding: 40px 0;
+        max-width: 1100px; /* Wider for gallery display */
+        margin: 0 auto;
+        display: grid;
+        grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); /* Responsive grid for gallery */
+        gap: 30px; /* Space between gallery items */
+        padding-left: 30px;
+        padding-right: 30px;
+    }
+
+    .gallery-item {
+        display: block; /* Make the whole item clickable */
+        text-decoration: none;
+        background-color: #FFFFFF;
+        border-radius: 10px;
+        overflow: hidden;
+        box-shadow: 0 4px 15px rgba(0,0,0,0.1);
+        transition: transform 0.3s ease, box-shadow 0.3s ease;
+    }
+
+    .gallery-item:hover {
+        transform: translateY(-8px);
+        box-shadow: 0 8px 25px rgba(0,0,0,0.2);
+    }
+
+    .gallery-item img {
+        width: 100%;
+        height: 250px; /* Consistent image height for gallery */
+        object-fit: cover;
+        display: block;
+    }
+
+    .gallery-item .caption {
+        padding: 15px;
+        font-size: 1.1em;
+        color: #555;
+        background-color: #FFEBEE; /* Lightest pink for caption background */
+        border-top: 1px solid #FFCDD2;
+        text-align: center;
+        font-weight: 500;
+    }
+
+    /* Comment Section */
+    section#comments { /* Targeted the section by ID */
+        max-width: 850px; /* Consistent with main content width */
+        margin: 40px auto; /* Centered below gallery */
+        padding: 50px;
+        background-color: #FFFFFF;
+        border-radius: 12px;
+        box-shadow: 0 5px 20px rgba(0,0,0,0.06);
+        padding-left: 30px;
+        padding-right: 30px;
+    }
+
+    section#comments h2 {
+        font-family: 'Playfair Display', serif;
+        font-size: 2.5em;
+        color: #C2185B;
+        text-align: center;
+        margin-bottom: 35px;
+    }
+
+    form#comment-form { /* Targeted the form by ID */
+        display: flex;
+        flex-direction: column;
+        gap: 20px;
+    }
+
+    form#comment-form label {
+        font-weight: 600;
+        color: #AD1457;
+        font-size: 1.05em;
+        display: block;
+        margin-bottom: 8px;
+    }
+
+    form#comment-form input[type="text"],
+    form#comment-form textarea {
+        padding: 14px;
+        border: 1px solid #FFCDD2;
+        border-radius: 8px;
+        font-size: 1em;
+        width: 100%;
+        box-sizing: border-box;
+        background-color: #FFF;
+        transition: border-color 0.2s ease, box-shadow 0.2s ease;
+    }
+
+    form#comment-form input[type="text"]:focus,
+    form#comment-form textarea:focus {
+        border-color: #E91E63;
+        outline: none;
+        box-shadow: 0 0 8px rgba(233, 30, 99, 0.2);
+    }
+
+    form#comment-form button[type="submit"] {
+        background-color: #E91E63;
+        color: white;
+        padding: 15px 30px;
+        border: none;
+        border-radius: 10px;
+        font-size: 1.15em;
+        cursor: pointer;
+        transition: background-color 0.3s ease, transform 0.2s ease, box-shadow 0.3s ease;
+        align-self: flex-start;
+        box-shadow: 0 4px 10px rgba(0,0,0,0.1);
+    }
+
+    form#comment-form button[type="submit"]:hover,
+    form#comment-form button[type="submit"]:focus {
+        background-color: #C2185B;
+        transform: translateY(-3px);
+        box-shadow: 0 6px 15px rgba(0,0,0,0.2);
+    }
+
+    /* Footer Styling */
+    footer { /* Targeting the footer directly */
+        background-color: #F8BBD0; /* Light pink footer background */
+        color: #AD1457; /* Deep pink text for footer */
+        padding: 30px 30px; /* Adjusted padding for simpler footer */
+        margin-top: 60px;
+        border-top: 1px solid #F0F0F0;
+        box-shadow: 0 -2px 10px rgba(0,0,0,0.04);
+        text-align: center;
+        font-size: 0.9em;
+    }
+
+    /* Responsive Adjustments */
+    @media (max-width: 900px) {
+        header h1 {
+            font-size: 3.5em;
+        }
+
+        nav {
+            padding: 8px 0;
+            margin-top: 20px;
+        }
+
+        .navbar {
+            gap: 15px;
+        }
+
+        .navbar a {
+            padding: 8px 15px;
+        }
+
+        main.gallery, section#comments {
+            padding: 40px 20px; /* Adjust padding for smaller screens */
+            gap: 20px; /* Adjust gallery gap */
+        }
+
+        main.gallery {
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); /* Adjust min-width */
+        }
+
+        .gallery-item img {
+            height: 200px; /* Adjust image height */
+        }
+
+        section#comments h2 {
+            font-size: 2.2em;
+        }
+    }
+
+    @media (max-width: 600px) {
+        header h1 {
+            font-size: 2.8em;
+        }
+
+        header p {
+            font-size: 1.1em;
+        }
+
+        nav {
+            border-radius: 0;
+            max-width: 100%;
+        }
+
+        .navbar {
+            flex-direction: column;
+            gap: 10px;
+        }
+
+        .navbar a {
+            width: calc(100% - 36px); /* Full width with padding */
+            text-align: center;
+        }
+
+        main.gallery, section#comments {
+            padding: 25px;
+            border-radius: 8px;
+        }
+
+        main.gallery {
+            grid-template-columns: 1fr; /* Single column on very small screens */
+        }
+
+        section#comments h2 {
+            font-size: 1.8em;
+        }
+
+        form#comment-form button[type="submit"] {
+            align-self: stretch; /* Full width button */
+        }
+    }
+  </style>
+</head>
+<body>
+  <header>
+    <h1>Le Goût</h1>
+    <p>A food vlog and cultural journal exploring global cuisine</p>
+    <nav>
+      <ul class="navbar">
+        <li><a href="asia.html">Asia</a></li>
+        <li><a href="europe.html">Europe</a></li>
+        <li><a href="africa.html">Africa</a></li>
+        <li><a href="streetfood.html">Street Food</a></li>
+        <li><a href="about.html">About</a></li>
+      </ul>
+    </nav>
+  </header>
+
+  <main class="gallery">
+    <h2 class="category-heading">Street Food Adventures 🌮</h2>
+    <p class="category-intro">Experience the vibrant world of street food, where every bite is a journey and every vendor has a story.</p>
+
+    <a href="#" class="gallery-item">
+      <img src="https://placehold.co/400x300/FCE4EC/880E4F?text=Street+Food+1" alt="Delicious Street Food 1" />
+      <div class="caption">Mexican Tacos</div>
+    </a>
+    <a href="#" class="gallery-item">
+      <img src="https://placehold.co/400x300/F8BBD0/880E4F?text=Street+Food+2" alt="Delicious Street Food 2" />
+      <div class="caption">New York Hot Dog</div>
+    </a>
+    <a href="#" class="gallery-item">
+      <img src="https://placehold.co/400x300/F48FB1/880E4F?text=Street+Food+3" alt="Delicious Street Food 3" />
+      <div class="caption">Indian Samosas</div>
+    </a>
+    <a href="#" class="gallery-item">
+      <img src="https://placehold.co/400x300/EC407A/FFFFFF?text=Street+Food+4" alt="Delicious Street Food 4" />
+      <div class="caption">Thai Pad Thai</div>
+    </a>
+    <a href="#" class="gallery-item">
+      <img src="https://placehold.co/400x300/E91E63/FFFFFF?text=Street+Food+5" alt="Delicious Street Food 5" />
+      <div class="caption">Brazilian Acarajé</div>
+    </a>
+    <a href="#" class="gallery-item">
+      <img src="https://placehold.co/400x300/D81B60/FFFFFF?text=Street+Food+6" alt="Delicious Street Food 6" />
+      <div class="caption">Japanese Takoyaki</div>
+    </a>
+    </main>
+
+  <section id="comments">
+    <h2>Leave a Comment</h2>
+    <form id="comment-form" action="#" method="post">
+      <label for="name">Name:</label>
+      <input type="text" id="name" name="name" placeholder="Your name" required />
+
+      <label for="comment">Comment:</label>
+      <textarea id="comment" name="comment" rows="4" placeholder="Write your comment here..." required></textarea>
+
+      <button type="submit">Submit</button>
+    </form>
+
+      </div>
+    </div>
+  </section>
+
+  <footer>
+    <p>© 2025 Le Goût | All rights reserved</p>
+    </footer>
+</body>
+</html>
