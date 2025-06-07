@@ -116,11 +116,18 @@ Once connected,  update the server. This will address any potential security vul
 sudo apt update
 sudo apt upgrade -y
 ```
+
+<img width="746" alt="image" src="https://github.com/user-attachments/assets/d2165bdc-7c2c-4361-b6c7-a1d1f03717ff" />
+
+
+
 ## Install Apache ##
 Install the Apache web server package on the Ubuntu server.
 ```
 sudo apt install apache2 -y
 ```
+<img width="590" alt="image" src="https://github.com/user-attachments/assets/8133f2e7-6254-426f-904b-153679922fec" />
+
 
 Test Apache: Open a web browser and navigate to the EC2 instance's public IPV4 address, which will take you to the default Apache page. This confirms that Apache is running and the security group is correctly allowing HTTP traffic. Connect to the EC2 instance using SSH with the previously created key pair.
 
@@ -142,6 +149,12 @@ ls -l
 sudo mv index.html index.html.Back
 Paste custom HTML code in the files
 ```
+
+<img width="743" alt="Screenshot 2025-06-07 200847" src="https://github.com/user-attachments/assets/41085c8c-aa2f-44c2-86b0-5a5ad33bdd94" />
+
+<img width="772" alt="Screenshot 2025-06-07 200929" src="https://github.com/user-attachments/assets/77359d13-f9f5-406b-b10b-629b52d839c9" />
+
+
 ## Register a Domain Name:##
 Create a Hosted Zone
 In the AWS console, search for and navigate to "Route 53."
@@ -150,6 +163,9 @@ Click the Create Hosted Zone button.
 Enter domain name (Legout.click). In the domain field.
 Select a public hosted zone for the type. Click Create Hosted Zone.
 
+<img width="955" alt="image" src="https://github.com/user-attachments/assets/85b63266-3db4-486d-8261-a7dda3d869be" />
+
+
 ## Create DNS Records in Route 53:##
 In the Route 53 hosted zone, click "Create record."
 Record type: A (IPv4)
@@ -157,6 +173,9 @@ Value: Enter  the EC2 instance's Public IP address.
 Routing policy: Simple routing
 Click "Create records."
 Note: It can take a few minutes to up to 48 hours for DNS changes to propagate across the internet.periodically teste the domain in the browser.
+<img width="939" alt="image" src="https://github.com/user-attachments/assets/b49be897-aa1b-4c7b-8a8a-87b10addf6a2" />
+
+
 
 ## Setting Up HTTPS with SSL#
 Implementing HTTPS is very crucial for website security and user trust.
@@ -180,6 +199,10 @@ Open a web browser and navigate to http://legout.click.
 The browser will automatically be redirected to https://legout.click
 Check for the padlock icon in the browser address bar, indicating a secure, encrypted connection. This confirms that HTTPS is successfully enabled and working.
 
+
+<img width="752" alt="Screenshot 2025-06-07 203653" src="https://github.com/user-attachments/assets/6255fb51-e301-460a-bf0a-c113f5bf686d" />
+
+
 ## Firewall ##
 To further enhance the security of the Le Gout server beyond AWS security Groups, a software firewall(ufw)will provide an additional layer of defense.
 Connect to EC2 instance via SSH
@@ -190,17 +213,27 @@ sudo ufw allow ssh
 sudo ufw allow 'Apache Full'
 sudo ufw enable
 sudo ufw status
-sudo apt update && sudo apt upgrade -y
+
 ```
+
+
+<img width="797" alt="image" src="https://github.com/user-attachments/assets/1cc4ebea-97b2-4e9c-9ea1-38d65b250a98" />
+
 
 ## Automate Content Deployment Script
 To streamline future updates to Le Gout, a simple shell script was created to automate the transfer of new HTML files.
 
 This deploy_legout.sh script automates the secure transfer of the entire "Le Gout" website content to the production server. It leverages SCP (Secure Copy Protocol) to copy files from a specified local directory to the Apache web root on the EC2 instance. After transfer, it ensures correct file ownership and permissions for the Apache web server (www-data user) to maintain proper functionality and security.
 
+
+<img width="860" alt="Screenshot 2025-06-06 204409" src="https://github.com/user-attachments/assets/8341d717-4051-42ad-98c5-1dea98068fda" />
+
+
+
 ## References##
 Certbot Apache—https://certbot.eff.org/instructions
 Simplefood-https://simplefood.blog/
+
 
 
 
