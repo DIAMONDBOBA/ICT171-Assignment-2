@@ -34,13 +34,13 @@ Figure 2: Selection of Ubuntu Server AMI and t2.micro instance type.
 <img width="944" alt="image" src="https://github.com/user-attachments/assets/e1351277-2cc1-4313-8fa8-d8d9c15ece8a" />
 
 
-## Configure Instance:##
+## Configure Instance:
 Since this is a simple food vlog, some default settings are fine 
 
-## Storage:##
+## Storage:
 The default storage is okay; this can always be increased later for content that requires more space, such as high-resolution images. For now, 8 GB is  okay.
 
-## Name Tag:## add a tag
+## Name Tag: add a tag
 Name: Le Gout Food Vlog Server for easy identification.
 
 **Configure Security Group:**
