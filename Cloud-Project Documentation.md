@@ -9,7 +9,7 @@ A Step-by-step guide to deploying the ** Le Gout** food blog on Amazon Web Servi
 >**Domain:** https://legout.click
 
 
-# Introduction#
+# Introduction
 This document outlines the process of setting up Le Gout, a personal food blog and cultural journal. The goal is to create an online presence that showcases culinary experiences and provides a platform for cultural sharing.
 
 # Launching EC2 Instance #
