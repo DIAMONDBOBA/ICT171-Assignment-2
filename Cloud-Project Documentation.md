@@ -12,20 +12,20 @@ A Step-by-step guide to deploying the ** Le Gout** food blog on Amazon Web Servi
 # Introduction
 This document outlines the process of setting up Le Gout, a personal food blog and cultural journal. The goal is to create an online presence that showcases culinary experiences and provides a platform for cultural sharing.
 
-# Launching EC2 Instance #
+# Launching EC2 Instance 
 If you don't already have an AWS account, please create one. Keeping in mind that this may take some time.
 
-# Log in to the Amazon EC2 Management Console #
+# Log in to the Amazon EC2 Management Console 
 Log in to the AWS management console: https://aws.amazon.com/ec2/
 Navigate to the EC2 Dashboard by searching for "EC2" and selecting it from the results.
 
-# Launch Instance #
+# Launch Instance 
 From the EC2 Dashboard, click on the "Launch instance" button to begin the instance creation wizard.
 
 Figure 1: Initiating a new EC2 instance launch from the EC2 Dashboard
 <img width="951" alt="image" src="https://github.com/user-attachments/assets/ffe03705-bcfd-420c-9593-fb4914316c39" />
 
-# Choose an Amazon Machine Image(AMI:#
+# Choose an Amazon Machine Image(AMI:)
 To create LeGout, select the t2.micro instance type to utilize AWS Free Tier benefits.
 
 Select the t2.micro instance type
@@ -73,7 +73,7 @@ Confirm the launch by clicking the "Launch instances" button
 <img width="587" alt="image" src="https://github.com/user-attachments/assets/ebd419e8-3d3e-4158-b16c-15e9586c6ee9" />
 
 
-## Allocating and Associating an Elastic IP Address
+# Allocating and Associating an Elastic IP Address
 EC2 instances receive dynamic public IP addresses by default. To ensure a consistent and persistent public IP for "Le Gout," an Elastic IP was allocated and associated.
 
 Navigate to EC2 Dashboard > Network & Security > Elastic IPs.
@@ -91,7 +91,7 @@ Figure 8: Confirmation of Elastic IP association details
 <img width="959" alt="image" src="https://github.com/user-attachments/assets/b19f12fd-a00e-4f88-a596-cea660e03ccb" />
 
 
-## Connect to server & Configure
+# Connect to server & Configure
 Open the terminal on the local machine.
 Set restrictive permissions for the private key file.
 
@@ -102,14 +102,14 @@ On the local machine, navigate to the directory where the keypair.pem file is sa
 ```
 chmod 400 /home/cd/Awskeypair.pem
 ```
-### SSH into the EC2 Instance
+# SSH into the EC2 Instance
 Connect to the EC2 instance via SSH
 Confirm connection by verifying the terminal prompt changed to the server's hostname.
 
 ```
 ssh -i "your-key.pem" ubuntu@<EC2-Public-IP>
 ```
-## Update Instance##
+# Update Instance
 Once connected,  update the server. This will address any potential security vulnerabilities and ensure access to the newest features and bug fixes.
 
 ```
@@ -121,7 +121,7 @@ sudo apt upgrade -y
 
 
 
-## Install Apache ##
+# Install Apache 
 Install the Apache web server package on the Ubuntu server.
 ```
 sudo apt install apache2 -y
@@ -136,10 +136,10 @@ Figure 9: Default Apache2 welcome page confirming successful web server installa
 
 <img width="949" alt="image" src="https://github.com/user-attachments/assets/9301e232-66e6-4e0b-8080-9f787d6682d7" />
 
-## Deploy "Le Gout" HTML Content
+# Deploy "Le Gout" HTML Content
 Once Apache is successfully installed and verified, replace the default welcome page with the custom HTML content for Le Gout.
 
-## Edit index.html on the Webserver ##
+# Edit index.html on the Webserver 
 Connect to the EC2 instance via SSH,
 navigate to the default Apache web root directory, and remove the existing default index.html file, back up the file before removal.
 
@@ -155,7 +155,7 @@ Paste custom HTML code in the files
 <img width="772" alt="Screenshot 2025-06-07 200929" src="https://github.com/user-attachments/assets/77359d13-f9f5-406b-b10b-629b52d839c9" />
 
 
-## Register a Domain Name:##
+# Register a Domain Name:
 Create a Hosted Zone
 In the AWS console, search for and navigate to "Route 53."
 In the left navigation pane, under DNS management, click on hosted zones.
@@ -166,7 +166,7 @@ Select a public hosted zone for the type. Click Create Hosted Zone.
 <img width="955" alt="image" src="https://github.com/user-attachments/assets/85b63266-3db4-486d-8261-a7dda3d869be" />
 
 
-## Create DNS Records in Route 53:##
+# Create DNS Records in Route 53:
 In the Route 53 hosted zone, click "Create record."
 Record type: A (IPv4)
 Value: Enter  the EC2 instance's Public IP address.
@@ -177,7 +177,7 @@ Note: It can take a few minutes to up to 48 hours for DNS changes to propagate a
 
 
 
-## Setting Up HTTPS with SSL#
+# Setting Up HTTPS with SSL
 Implementing HTTPS is very crucial for website security and user trust.
 An SSL certificate is Essential to  enable HTTPS (secure connection).
 
@@ -189,7 +189,7 @@ sudo apt install certbot python3-certbot-apache -y
 sudo certbot --apache
 
 ```
-##Follow the prompts##
+# Follow the prompts
 Enter email address: Enter a valid email for urgent renewal notices and security warnings.
 Terms of service: Agree to the Let's Encrypt terms of service.
 Enter your domain name (e.g.,legout.click).
@@ -203,7 +203,7 @@ Check for the padlock icon in the browser address bar, indicating a secure, encr
 <img width="752" alt="Screenshot 2025-06-07 203653" src="https://github.com/user-attachments/assets/6255fb51-e301-460a-bf0a-c113f5bf686d" />
 
 
-## Firewall ##
+# Firewall 
 To further enhance the security of the Le Gout server beyond AWS security Groups, a software firewall(ufw)will provide an additional layer of defense.
 Connect to EC2 instance via SSH
 , scp -i your-key.pem * ubuntu@<EC2-IP>:/var/www/html/
@@ -220,7 +220,7 @@ sudo ufw status
 <img width="797" alt="image" src="https://github.com/user-attachments/assets/1cc4ebea-97b2-4e9c-9ea1-38d65b250a98" />
 
 
-## Automate Content Deployment Script
+# Automate Content Deployment Script
 To streamline future updates to Le Gout, a simple shell script was created to automate the transfer of new HTML files.
 
 This deploy_legout.sh script automates the secure transfer of the entire "Le Gout" website content to the production server. It leverages SCP (Secure Copy Protocol) to copy files from a specified local directory to the Apache web root on the EC2 instance. After transfer, it ensures correct file ownership and permissions for the Apache web server (www-data user) to maintain proper functionality and security.
@@ -230,7 +230,7 @@ This deploy_legout.sh script automates the secure transfer of the entire "Le Gou
 
 
 
-## References##
+# References##
 Certbot Apache—https://certbot.eff.org/instructions
 Simplefood-https://simplefood.blog/
 
