@@ -248,7 +248,12 @@ This deploy_legout.sh script automates the secure transfer of the entire "Le Gou
 
 # References##
 Certbot Apache—https://certbot.eff.org/instructions
+
 Simplefood-https://simplefood.blog/
+
+codecademy - https://www.codecademy.com/catalog/language/html-css
+
+
 
 
 
