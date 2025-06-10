@@ -1,7 +1,7 @@
 ##!/bin/bash
 
-# Le Gout deployment - quick and dirty
-# TODO: add error handling for network timeouts
+# Le Gout deployment
+
 
 LOCAL_SITE="/mnt/c/Users/nkatu/OneDrive/Desktop/LeGoutWebsite"
 KEY_FILE="/home/cd/Awskeypair.pem" 
