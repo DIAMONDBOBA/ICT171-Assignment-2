@@ -17,7 +17,7 @@ echo " Deploying Le Gout..."
 # Push files
 echo " Syncing files..."
 if ! scp -r -i "$KEY_FILE" "$LOCAL_SITE"/* "$SERVER:$WEB_DIR" 2>/dev/null; then
-    echo " Upload failed - check your connection/keys"
+    echo " Upload failed - check and makre sure the connection/keys are correct"
     exit 1
 fi
 
@@ -32,8 +32,8 @@ REMOTE
 
 if [ $? -eq 0 ]; then
     echo " Deployment complete!"
-    echo "Check it out: https://your-domain.click"
-    echo " Hard refresh (Ctrl+F5) if changes don't show"
+    echo "Check it out: https://le gout.click"
+    echo " Hard refresh (Ctrl+F5) if changes don't show right away "
 else
     echo " Permission update failed"
     exit 1
