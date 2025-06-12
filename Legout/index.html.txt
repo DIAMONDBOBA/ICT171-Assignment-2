@@ -701,7 +701,7 @@
     <main>
       <section class="intro">
         <h2>Welcome to Le Goût 🍽️</h2>
-        <p>Explore food stories and culture from around the world, one plate at a time. Our mission is to bring you closer to diverse culinary traditions and inspire your next kitchen adventure!</p>
+        <p>Explore food stories and culture from around the world, one plate at a time.  is to bring you closer to diverse culinary traditions and inspire your next kitchen adventure!</p>
       </section>
 
       <section class="image-gallery-section"> <h3 class="section-subtitle">Feast Your Eyes!</h3>
@@ -745,7 +745,7 @@
             <input type="email" id="email" name="email" required>
           </div>
           <div class="form-group">
-            <label for="comment">Your Comment:</label>
+            <label for="comment"> Comment:</label>
             <textarea id="comment" name="comment" rows="6" required></textarea>
           </div>
           <button type="submit">Post Comment</button>
@@ -791,12 +791,12 @@
             <input type="submit" class="search-submit" value="Search">
           </form>
           <h3>Follow us on Social Media</h3>
-          <p>Follow <a href="https://www.facebook.com/your-legout-page" target="_blank" rel="noopener noreferrer">Le Goût on Facebook</a> and share your photos and recipes.</p>
+          <p>Follow <a href="https://www.facebook.com/legout-page" target="_blank" rel="noopener noreferrer">Le Goût on Facebook</a> and share your photos and recipes.</p>
           <p>You can also find us on:</p>
           <div class="social-links">
-            <a href="https://www.instagram.com/your-legout-instagram" target="_blank" rel="noopener noreferrer" aria-label="Instagram"><img src="https://placehold.co/30x30/FFC0CB/880E4F?text=IG" alt="Instagram"></a>
-            <a href="https://www.pinterest.com/your-legout-pinterest" target="_blank" rel="noopener noreferrer" aria-label="Pinterest"><img src="https://placehold.co/30x30/FFC0CB/880E4F?text=PT" alt="Pinterest"></a>
-            <a href="https://twitter.com/your-legout-twitter" target="_blank" rel="noopener noreferrer" aria-label="Twitter"><img src="https://placehold.co/30x30/FFC0CB/880E4F?text=TW" alt="Twitter/X"></a>
+            <a href="https://www.instagram.com/legout-instagram" target="_blank" rel="noopener noreferrer" aria-label="Instagram"><img src="https://placehold.co/30x30/FFC0CB/880E4F?text=IG" alt="Instagram"></a>
+            <a href="https://www.pinterest.com/legout-pinterest" target="_blank" rel="noopener noreferrer" aria-label="Pinterest"><img src="https://placehold.co/30x30/FFC0CB/880E4F?text=PT" alt="Pinterest"></a>
+            <a href="https://twitter.com/legout-twitter" target="_blank" rel="noopener noreferrer" aria-label="Twitter"><img src="https://placehold.co/30x30/FFC0CB/880E4F?text=TW" alt="Twitter/X"></a>
           </div>
         </div>
         <div class="footer-column">
