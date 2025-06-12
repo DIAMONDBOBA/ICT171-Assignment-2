@@ -239,11 +239,17 @@ Figure 18: Terminal output showing UFW firewall configuration and status
 
 # Automate Content Deployment Script
 
-This deploy_legout.sh script automates the secure transfer of the entire "Le Gout" website content to the production server. It leverages SCP (Secure Copy Protocol) to copy files from a specified local directory to the Apache web root on the EC2 instance. After transfer, it ensures correct file ownership and permissions for the Apache web server (www-data user) to maintain proper functionality and security.
+This deploy_legout.sh script automates the secure transfer of the entire "Le Gout" website it securly transfers all alocal HTML,CSS nd images files from the local computer to the AWS EC2 instance's Apache web root(/var/www/html) after tranfere it ensures correct file ownership and permissions for the Apache web server (www-data user) to maintain proper functionality and security.
+
+Second Script Favorite food
+This script prompts the user to enter their the name of their favorite food and displays it back to them.
 
 
 <img width="860" alt="Screenshot 2025-06-06 204409" src="https://github.com/user-attachments/assets/8341d717-4051-42ad-98c5-1dea98068fda" />
 
+
+# Conclusion
+This documentation details the complete depolyment of Le Gout, using AWS EC2 instances,and configuration of the Apache web server along with the intergration of Route 53 for Domain Name resolution and the implemenation of SSL/TLS encryption using Certbot.Le Gout can be re created by any one and is easily updatable throught the use of the deployement script.
 
 
 # References##
